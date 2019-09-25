@@ -172,15 +172,10 @@ def main():
                         maxchain = deepcopy(chain + temp)                            
                     chain.append(nextnode.id)
                     chainlevel.append(currlevel)
-                    #level.append(currlevel)
-                    
-                    #level.extend([currlevel]*(len(temp)-1))
-                    #print(chain)
-                    #print(chainlevel)
-                    #print(graphlevel)
+
+
                     if nextnode.children:
                         graph.extend(nextnode.children)
-                        #graphlevel.append(currlevel)
                         currlevel += 1
                         graphlevel.extend([currlevel]*len(nextnode.children))
                 
@@ -190,24 +185,17 @@ def main():
                             maxchain = deepcopy(chain)
                         chain.pop()
                         currlevel = chainlevel.pop()
-                        over = None
+                        #remove all the words in the chain until it gets back to the next valid parent with children
                         while len(chainlevel) > 1 and len(graph) and chainlevel[-1] >= graphlevel[-1]:
                             currlevel = chainlevel.pop()
-                            over = chain.pop()
-                        #if over:n
-                        
-                            #chain.append(over)
-                        #if "n" == (input("Continue?[y/n]")).lower():
-                            #break
+                            chain.pop()
+
                 else:
-                    #if already visited, go back to last valid point?
-                    #chain.pop()
-                    over = None
+                    #remove all the words in the chain until it gets back to the next valid parent with children
                     while len(chainlevel) > 1 and len(graph) and chainlevel[-1] >= graphlevel[-1]:
                         currlevel = chainlevel.pop()
-                        over = chain.pop()
-                    #if over:
-                        #chain.append(over)
+                        chain.pop()
+
                 if not len(graphlevel):
                     break
                     
@@ -215,10 +203,11 @@ def main():
             
         if len(maxchain) > len(maxest):
             maxest = deepcopy(maxchain)
-        if count > 1000 and "n" == (input("Continue?[y/n]")).lower():
-            break
-        elif count > 1000:
+        if count > 1000:
             count = 0
+            print("Still calculating.")
+            print("Currently on node: " +str(nextnode.id))
+            
         
     with open(r"daisychains.txt","w") as file:    
         for key in maxest:

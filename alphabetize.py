@@ -57,10 +57,11 @@ def main():
                 file.write("%d,%d\n" % (encoder[temp[0]],encoder[temp[-1]]))
     file.close()   
     
-    try:
-        tinput = int(input("Enter a number to decode: "))
-    except ValueError:
-        tinput = -1
+    tinput = -1
+    #try:
+    #    tinput = int(input("Enter a number to decode: "))
+    #except ValueError:
+    #    tinput = -1
     while tinput > -1:
         print(sortkeywords[tinput])
         try:
