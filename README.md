@@ -7,7 +7,7 @@ First off, huge shoutouts to reddit user u/LuridTeaParty for inspiring me to do 
 Second shoutouts to https://mtgjson.com/ for being the source for all magic card names. At time of writing, this list uses the names from the new Eldrained set.
 
 ## To Run
-First run,
+Just download all the files, and put them in the same folder. Then you can run the main.py and it will begin finding the longest list.
 
 
 ## Brief Description
